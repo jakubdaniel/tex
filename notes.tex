@@ -1,0 +1,46 @@
+\input algorithm
+
+\MyAlgorithm{
+    \MyTwoColumns{
+        \MyProcedure{main}{}{
+            \MyFor{0 \le i < n}{
+                \MyIf*{c_1}{%
+                    \MyAssign{x}{y}
+                }
+                \MyElse*{\MyIf*{c_2}{%
+                    \MyReturn{}
+                }}
+                \MyElse*{\MyIf{c_3}{
+                    \MyReturn{}
+                }}
+                \MyElse{
+                    \MyAssert{c_4}
+                }
+            }
+        }
+    }{
+        \MyFunction{xyz}{a, b, c}{
+            \MyWhile*{true}{%
+                \MyAssert{nothing}
+            }
+            \MyWhile{false}{
+                \MyAssert{something}
+            }
+            \MyLine{custom line}
+            \MyFor*{?}{%
+                \MyLine{?!}
+            }
+            \MyIf*{?}{\MyAssert*{!}}\MyElse*{\MyLine{:P}}
+        }
+        \MyLine{}
+        \MyFunction{abc}{}{
+            \MyDo{
+                \MyLine{something}
+            }{?}
+            \MyInlineDo{\MyAssign{x}{x+1}}{x < 10}
+        }
+    }
+}
+
+\bye
+.
