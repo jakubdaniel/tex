@@ -9,7 +9,7 @@
 \def\MyIndentationStep{1.5em}%
 \def\MyIndent{\global\advance\MyIndentation by 1\relax}%
 \def\MyUnIndent{\global\advance\MyIndentation by -1\relax}%
-\def\MyStrut{\vrule height1.3em depth-0.3em width0pt}%
+\def\MyStrut{\leavevmode\hbox{\vrule height1.1em depth0.3em width0pt}}%
 \def\MyClosedLine#1{%
     \hbox\bgroup\MyLineLabel#1\egroup%
 }%
