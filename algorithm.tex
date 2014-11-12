@@ -19,6 +19,9 @@
     \fi%
     \MyLineLabel#1%
 }%
+\def\MyVoidLine{%
+    \hbox{\MyStrut}%
+}%
 \def\MyLineLabel{%
     \ifx\MyInline\MyUndefined%
         \global\advance\MyLineNumber by 1\relax%
