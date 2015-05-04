@@ -85,6 +85,9 @@
 \def\MyAssign#1#2{\ifx#1*\expandafter\MyInlineAssign{#2}\else\MyBreakAssign{#1}{#2}\fi}%
 \def\MyReturn#1{\ifx#1*\expandafter\MyInlineReturn\else\MyBreakReturn{#1}\fi}%
 
+\def\MyLabel#1{\expandafter\global\expandafter\edef\csname MyAlgorithm@#1 \endcsname{\the\MyLineNumber}}%
+\def\MyRef#1{line~\csname MyAlgorithm@#1 \endcsname}%
+
 \def\MyTwoColumns#1#2{%
     \let\mybox\hbox%
     \hfill%

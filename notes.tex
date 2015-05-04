@@ -89,7 +89,7 @@
         \MyAssign{s}{\hbox{last state of } tr}
         \MyAssign{\tau}{\hbox{last transition of } tr}
         \MyIf{\exists a \in unexp(R, {\cal C}, s)}{
-            \MyAssign{\tau'}{trans(R, tr, s, a)}
+            \MyAssign{\tau'}{trans(R, tr, s, a)} \MyLabel{line:trans}
             \MyAssign{R}{R \oplus \tau'}
             \MyAssign{tr}{tr \oplus \tau'}
         }
@@ -103,7 +103,7 @@
     }
     \MyVoidLine{}
     \MyFunction{real}{cex}{
-        \MyReturn{\hbox{is } \varphi_{cex} \hbox{ satisfiable?}}
+        \MyReturn{\hbox{is } \varphi_{cex} \hbox{ satisfiable?}} \MyLabel{line:smt}
     }
     \MyVoidLine{}
     \MyFunction{reset}{R,tr,cex}{
@@ -111,6 +111,8 @@
     }
   }
 }
+\vskip1em
+A reference to \MyRef{line:trans}. {\sc Panda} calls an SMT at \MyRef{line:smt}.
 
 \bye
 .
