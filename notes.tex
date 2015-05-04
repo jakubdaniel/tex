@@ -50,6 +50,67 @@
         \MyReturn{n \cdot o \cdot p}
     }
 }
+\vskip2em
+\MyAlgorithm{
+  \MyTwoColumns{
+    \MyFunction{Panda}{P, abs}{
+        \MyAssign{R}{(\{s_0\},\{\})}
+        \MyAssign{tr}{(s_0)}
+        \MyWhile{R \hbox{ changes}}{
+            \MyAssign{(R,tr,cex)}{\MyCall{unroll}{P,R,tr}}
+            \MyIf{cex \neq \bot}{
+                \MyIf*{\MyCall{real}{cex}}{%
+                    \MyReturn{cex}
+                }
+                \MyAssign{abs}{\MyCall{refine}{P,abs,cex}}
+                \MyAssign{(R,tr)}{\MyCall{reset}{R,tr,cex}}
+            }
+        }
+        \MyReturn{\hbox{\it safe}}
+    }
+    \MyVoidLine{}
+    \MyFunction{refine}{P, abs, cex}{
+        \MyAssign{({\cal C}, l_{init}, l_{err})}{P}
+        \MyFor{\varphi_{scp} \in scopes(\varphi_{cex})}{
+            \MyAssign{L_{scp}}{locs(cex, \varphi_{scp}, {\cal C})}
+            \MyFor{l \in L_{scp}}{
+                \MyAssign{p}{itp(\varphi_{scp}, \varphi_{cex}, l)}
+                \MyIf{p \not\in abs(l)}{
+                    \MyAssign{abs(l)}{abs(l) \cup \{p\}}
+                }
+            }
+        }
+        \MyReturn{abs}
+    }
+  }{
+    \MyFunction{unroll}{P, R, tr}{
+        \MyAssign{({\cal C}, l_{init}, l_{err})}{P}
+        \MyAssign{cex}{\bot}
+        \MyAssign{s}{\hbox{last state of } tr}
+        \MyAssign{\tau}{\hbox{last transition of } tr}
+        \MyIf{\exists a \in unexp(R, {\cal C}, s)}{
+            \MyAssign{\tau'}{trans(R, tr, s, a)}
+            \MyAssign{R}{R \oplus \tau'}
+            \MyAssign{tr}{tr \oplus \tau'}
+        }
+        \MyElse{
+            \MyAssign{tr}{tr \ominus \tau}
+        }
+        \MyIf{tr \hbox{ reaches } l_{err}}{
+            \MyAssign{cex}{tr}
+        }
+        \MyReturn{(R,tr,cex)}
+    }
+    \MyVoidLine{}
+    \MyFunction{real}{cex}{
+        \MyReturn{\hbox{is } \varphi_{cex} \hbox{ satisfiable?}}
+    }
+    \MyVoidLine{}
+    \MyFunction{reset}{R,tr,cex}{
+        \MyReturn{( (\{s_0\},\{\}),(s_0) )}
+    }
+  }
+}
 
 \bye
 .
